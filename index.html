@@ -2,31 +2,40 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebApp Dashboard</title>
 
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1>YourApp&trade;</h1>
+      <header class="header">
+        <h1><b>Your</b>App<span class="trade">&trade;</span></h1>
 
         <ul>
-          <li><button>Notifications</button></li>
-          <li><a href=""><i></i> Your Name</a></li>
+          <li><button class="header-notify btn notify-active" type="button" title="Notifications"><i class="icon icon-notify">Notifications</i></button></li>
+          <li><a href="" class="header-profile"><i class="header-profile-img"><img src="images/member-1.jpg" alt=""></i> <span class="header-profile-name">Your Name</span></a></li>
         </ul>
       </header>
 
-      <nav>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="is-active"><a class="nav-list-link" href="" title="Dashboard">
+            <i class="icon icon-dashboard is-lg">Dashboard</i>
+          </a></li>
+          <li><a class="nav-list-link" href="" title="Members">
+            <i class="icon icon-members is-lg">Members</i>
+          </a></li>
+          <li><a class="nav-list-link" href="" title="Visits">
+            <i class="icon icon-visits is-lg">Visits</i>
+          </a></li>
+          <li><a class="nav-list-link" href="" title="Settings">
+            <i class="icon icon-settings is-lg">Settings</i>
+          </a></li>
         </ul>
       </nav>
 
-      <main>
+      <main class="main">
         <div>
           <h2>Dashboard</h2>
           <div>SearchBar</div>
@@ -87,7 +96,7 @@
             <h3>Message User</h3>
             <form class="" action="" method="post">
               <input type="text" name="" value="">
-              <textarea name="name" rows="8" cols="80"></textarea>
+              <textarea name="name"></textarea>
               <button type="submit" name="button">Send</button>
             </form>
           </div>
@@ -109,10 +118,6 @@
           </div>
         </div>
       </main>
-
-      <footer>
-
-      </footer>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" charset="utf-8"></script>
