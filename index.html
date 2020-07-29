@@ -13,7 +13,7 @@
         <h1><b>Your</b>App<span class="trade">&trade;</span></h1>
 
         <ul>
-          <li><button class="header-notify btn notify-active" type="button" title="Notifications"><i class="icon icon-notify">Notifications</i></button></li>
+          <li><button class="header-notify btn btn-sm notify-active" type="button" title="Notifications"><i class="icon icon-notify">Notifications</i></button></li>
           <li><a href="" class="header-profile"><i class="header-profile-img"><img src="images/member-1.jpg" alt=""></i> <span class="header-profile-name">Your Name</span></a></li>
         </ul>
       </header>
@@ -36,31 +36,28 @@
       </nav>
 
       <main class="main">
-        <div>
+        <div class="main-head">
           <h2>Dashboard</h2>
           <div>SearchBar</div>
+          <p>Alert Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor.</p>
         </div>
 
-        <p>Alert</p>
-
-        <div class="">
+        <div class="traffic">
           <h3>Traffic</h3>
 
-          <canvas id="trafficLine" width="300" height="100"></canvas>
+          <canvas id="trafficLine" width="300" height="200"></canvas>
         </div>
 
-        <div class="">
-          <div class="">
-            <h3>Daily Traffic</h3>
+        <div class="daily">
+          <h3>Daily Traffic</h3>
 
-            <canvas id="dailyTraffic" width="300" height="100"></canvas>
-          </div>
+          <canvas id="dailyTraffic" width="300" height="200"></canvas>
+        </div>
 
-          <div class="">
-            <h3>Mobile Users</h3>
+        <div class="mobile">
+          <h3>Mobile Users</h3>
 
-            <canvas id="mobileUsers" width="300" height="100"></canvas>
-          </div>
+          <canvas id="mobileUsers" width="300" height="200"></canvas>
         </div>
 
         <div class="social">
@@ -126,13 +123,13 @@
           </div>
         </div>
 
-        <div class="">
+        <div class="new_members">
           <div class="user_section">
             <h3>New Members</h3>
             <ul class="user_section-list">
               <li>
                 <div class="user_section-user">
-                  <img src="images/member-1.jpg" alt="Victoria Chambers">
+                  <div class="user_section-img_wrap"><img src="images/member-1.jpg" alt="Victoria Chambers"></div>
                   <div class="user_section-user-info">
                     <div>Victoria Chambers</div>
                     <a href="mailto:victoria.chambers80@example.com">victoria.chambers80@example.com</a>
@@ -144,7 +141,7 @@
 
               <li>
                 <div class="user_section-user">
-                  <img src="images/member-2.jpg" alt="Dale Byrd">
+                  <div class="user_section-img_wrap"><img src="images/member-2.jpg" alt="Dale Byrd"></div>
                   <div class="user_section-user-info">
                     <div>Dale Byrd</div>
                     <a href="mailto:dale.byrd52@example.com">dale.byrd52@example.com</a>
@@ -155,7 +152,7 @@
               </li>
               <li>
                 <div class="user_section-user">
-                  <img src="images/member-3.jpg" alt="Dawn Wood">
+                  <div class="user_section-img_wrap"><img src="images/member-3.jpg" alt="Dawn Wood"></div>
                   <div class="user_section-user-info">
                     <div>Dawn Wood</div>
                     <a href="mailto:dawn.wood16@example.com">dawn.wood16@example.com</a>
@@ -166,7 +163,7 @@
               </li>
               <li>
                 <div class="user_section-user">
-                  <img src="images/member-4.jpg" alt="Dan Oliver">
+                  <div class="user_section-img_wrap"><img src="images/member-4.jpg" alt="Dan Oliver"></div>
                   <div class="user_section-user-info">
                     <div>Dan Oliver</div>
                     <a href="mailto:dan.oliver82@example.com">dan.oliver82@example.com</a>
@@ -177,14 +174,16 @@
               </li>
             </ul>
           </div>
+        </div>
 
+        <div class="activity">
           <div class="user_section">
             <h3>Recent Activity</h3>
             <ul class="user_section-list">
               <li>
                 <a href="#">
                   <div class="user_section-user">
-                    <img src="images/member-1.jpg" alt="Victoria Chambers">
+                    <div class="user_section-img_wrap"><img src="images/member-1.jpg" alt="Victoria Chambers"></div>
                     <div class="user_section-user-info">
                       <div>Victoria Chambers commented on YourApp's SEO Tips</div>
                       <div>4 hours ago</div>
@@ -198,7 +197,7 @@
               <li>
                 <a href="#">
                   <div class="user_section-user">
-                    <img src="images/member-2.jpg" alt="Dale Byrd">
+                    <div class="user_section-img_wrap"><img src="images/member-2.jpg" alt="Dale Byrd"></div>
                     <div class="user_section-user-info">
                       <div>Dale Byrd like the post Facebook's Chanes for 2016</div>
                       <div>5 hours ago</div>
@@ -211,7 +210,7 @@
               <li>
                 <a href="#">
                   <div class="user_section-user">
-                    <img src="images/member-3.jpg" alt="Dawn Wood">
+                    <div class="user_section-img_wrap"><img src="images/member-3.jpg" alt="Dawn Wood"></div>
                     <div class="user_section-user-info">
                       <div>Dawn Wood commented on Facebook's Changes for 2016</div>
                       <div>5 hours ago</div>
@@ -224,7 +223,7 @@
               <li>
                 <a href="#">
                   <div class="user_section-user">
-                    <img src="images/member-4.jpg" alt="Dan Oliver">
+                    <div class="user_section-img_wrap"><img src="images/member-4.jpg" alt="Dan Oliver"></div>
                     <div class="user_section-user-info">
                       <div>Dan Oliver posted YourApp's SEO Tips</div>
                       <div>1 day ago</div>
@@ -238,31 +237,29 @@
           </div>
         </div>
 
-        <div class="">
-          <div class="">
-            <h3>Message User</h3>
-            <form class="" action="" method="post">
-              <input type="text" name="" value="">
-              <textarea name="name"></textarea>
-              <button type="submit" name="button">Send</button>
-            </form>
-          </div>
+        <div class="message_user">
+          <h3>Message User</h3>
+          <form class="" action="" method="post">
+            <input class="form-field" type="text" name="userName" value="" placeholder="Search for User">
+            <textarea class="form-field" name="userMessage" placeholder="Message for User"></textarea>
+            <button class="btn btn-primary" type="submit" name="button">Send</button>
+          </form>
+        </div>
 
-          <div class="">
-            <h3>Settings</h3>
-            <form class="" action="" method="post">
-              <label for=""></label>
-              <input type="radio" name="" value="">
+        <div class="settings">
+          <h3>Settings</h3>
+          <form class="" action="" method="post">
+            <label for=""></label>
+            <input type="radio" name="" value="">
 
-              <label for=""></label>
-              <input type="radio" name="" value="">
+            <label for=""></label>
+            <input type="radio" name="" value="">
 
-              <div class="">
-                <button type="submit" name="button">Save</button>
-                <button type="button" name="button">Cancel</button>
-              </div>
-            </form>
-          </div>
+            <div class="">
+              <button class="btn btn-primary" type="submit" name="button">Save</button>
+              <button class="btn btn-cancel" type="button" name="button">Cancel</button>
+            </div>
+          </form>
         </div>
       </main>
     </div>
