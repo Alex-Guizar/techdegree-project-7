@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>WebApp Dashboard</title>
 
     <link rel="stylesheet" href="css/styles.css">
@@ -45,19 +45,19 @@
         <div class="traffic">
           <h3>Traffic</h3>
 
-          <canvas id="trafficLine" width="300" height="200"></canvas>
+          <div class="canvas_wrap"><canvas id="trafficLine"></canvas></div>
         </div>
 
         <div class="daily">
           <h3>Daily Traffic</h3>
 
-          <canvas id="dailyTraffic" width="300" height="200"></canvas>
+          <div class="canvas_wrap"><canvas id="dailyTraffic"></canvas></div>
         </div>
 
         <div class="mobile">
           <h3>Mobile Users</h3>
 
-          <canvas id="mobileUsers" width="300" height="200"></canvas>
+          <div class="canvas_wrap"><canvas id="mobileUsers"></canvas></div>
         </div>
 
         <div class="social">
@@ -249,11 +249,24 @@
         <div class="settings">
           <h3>Settings</h3>
           <form class="" action="" method="post">
-            <label for=""></label>
-            <input type="radio" name="" value="">
 
-            <label for=""></label>
-            <input type="radio" name="" value="">
+            <!-- Used examples from this site for structure and transitions for the checkboxes: https://1stwebdesigner.com/css-snippets-radio-toggles-switches/ -->
+
+            <div class="check_toggle">
+              <input id="email_notify" type="checkbox" name="email_notify" value="">
+              <label for="email_notify">
+                <span class="check_toggle-text">Send Email Notifications</span>
+                <div class="check_toggle-switch" data-checked="on" data-unchecked="off"></div>
+              </label>
+            </div>
+
+            <div class="check_toggle">
+              <input id="public_prof" type="checkbox" name="public_prof" value="">
+              <label for="public_prof">
+                <span class="check_toggle-text">Set Profile to Public</span>
+                <div class="check_toggle-switch" data-checked="on" data-unchecked="off"></div>
+              </label>
+            </div>
 
             <div class="">
               <button class="btn btn-primary" type="submit" name="button">Save</button>

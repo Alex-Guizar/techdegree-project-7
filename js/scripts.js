@@ -20,6 +20,10 @@ var trafficChart = new Chart(trafficLine, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
+        onResize: function() {
+          console.log('test');
+        },
         legend: {
           display: false
         },
@@ -52,6 +56,7 @@ var dailyChart = new Chart(dailyTraffic, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         legend: {
           display: false
         },
@@ -80,6 +85,7 @@ var mobileChart = new Chart(mobileUsers, {
         }]
     },
     options: {
+        maintainAspectRatio: false,
         legend: {
           position: 'right'
         },
