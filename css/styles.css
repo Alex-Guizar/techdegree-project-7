@@ -350,6 +350,11 @@ template {
   display: none;
 }
 
+html, body, .wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* Utility */
 .btn {
   display: block;
@@ -387,6 +392,7 @@ template {
 /* Used examples from this site for structure and transitions for the checkboxes: https://1stwebdesigner.com/css-snippets-radio-toggles-switches/ */
 .check_toggle {
   position: relative;
+  margin-top: 24px;
 }
 
 .check_toggle input {
@@ -399,7 +405,7 @@ template {
 .check_toggle-text {
   display: inline-block;
   vertical-align: middle;
-  width: 180px;
+  width: 166px;
 }
 
 .check_toggle-switch {
@@ -456,6 +462,93 @@ template {
 .check_toggle input[type="checkbox"]:checked ~ label .check_toggle-switch::after {
   -webkit-transform: translate3d(48px, 0, 0);
   transform: translate3d(48px, 0, 0);
+}
+
+.custom_select-wrap {
+  position: relative;
+}
+
+.custom_select-hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.custom_select-selected {
+  position: relative;
+  padding: 12px 50px 12px 16px;
+  margin-top: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.custom_select-selected.active {
+  border-radius: 6px 6px 0 0;
+}
+
+.open-up .custom_select-selected.active {
+  border-radius: 0 0 6px 6px;
+}
+
+.custom_select-selected::before, .custom_select-selected::after {
+  content: '';
+  border-style: solid;
+  border-top-color: #8785c9;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  border-width: 10px 10px 0 10px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  margin-top: -5px;
+}
+
+.custom_select-selected::after {
+  margin-top: -7px;
+  border-top-color: #ffffff;
+}
+
+.custom_select-selected.active::before, .custom_select-selected.active::after {
+  border-top-color: transparent;
+  border-bottom-color: #8785c9;
+  border-width: 0 10px 10px 10px;
+}
+
+.custom_select-selected.active::after {
+  margin-top: -3px;
+  border-bottom-color: #ffffff;
+}
+
+.custom_select-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  max-height: 500px;
+  padding: 0;
+  margin: -1px 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 0 0 6px 6px;
+  overflow-y: auto;
+}
+
+.open-up .custom_select-list {
+  bottom: 100%;
+  top: auto;
+  border-radius: 6px 6px 0 0;
+  margin: 0 0 -1px;
+}
+
+.custom_select-list li {
+  padding: 12px;
+}
+
+.custom_select-list li:hover {
+  background-color: #eeeeee;
 }
 
 /* Icons */
@@ -714,7 +807,7 @@ h1 {
   border-left: 1px solid #cccccc;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 1024px) {
   .main > * {
     padding: 24px;
   }
@@ -747,6 +840,10 @@ h1 {
   grid-area: mobile;
 }
 
+.daily, .mobile {
+  overflow: auto; /* Fix for resize bug with chart.js in grid cells */
+}
+
 /* Social Stats */
 .social {
   grid-area: social
@@ -759,6 +856,7 @@ h1 {
 .social-wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   margin-left: -12px;
   margin-right: -12px;
 }
@@ -766,16 +864,12 @@ h1 {
 .social-cell {
   flex: 1 1;
   display: flex;
+  min-width: 235px;
+  max-width: 280px;
   border: 1px solid #cccccc;
   border-radius: 6px;
   padding: 24px;
   margin: 16px 16px 0;
-}
-
-@media (min-width: 768px) {
-  .social-cell {
-    margin-top: 0;
-  }
 }
 
 .social-cell > div:first-child {
@@ -884,4 +978,19 @@ h1 {
 /* Settings */
 .settings {
   grid-area: settings;
+}
+
+@media (min-width: 576px) {
+  .settings-btns {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -12px;
+    margin-right: -12px;
+  }
+
+  .settings-btns > * {
+    box-sizing: border-box;
+    flex: 1 0 50%;
+    padding: 0 12px;
+  }
 }
