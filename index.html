@@ -37,9 +37,28 @@
 
       <main class="main">
         <div class="main-head">
-          <h2>Dashboard</h2>
-          <div>SearchBar</div>
-          <p>Alert Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor.</p>
+          <div class="main-head-inner">
+            <h2 class="main-head-inner-title">Dashboard</h2>
+            <form class="main-head-inner-search" method="post">
+              <div class="input_group">
+                <input class="form-field" type="text" name="search" value="" placeholder="Search">
+
+                <!-- Search Icon SVG from: https://www.svgrepo.com/svg/103291/search -->
+                <div class="input_group-append">
+                  <button class="btn btn-outline" type="submit"><svg class="icon-search" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  	 viewBox="0 0 489.713 489.713" style="enable-background:new 0 0 489.713 489.713;" xml:space="preserve">
+                    <g>
+                    	<path d="M483.4,454.444l-121.3-121.4c28.7-35.2,46-80,46-128.9c0-112.5-91.5-204.1-204.1-204.1S0,91.644,0,204.144
+                    		s91.5,204,204.1,204c48.8,0,93.7-17.3,128.9-46l121.3,121.3c8.3,8.3,20.9,8.3,29.2,0S491.8,462.744,483.4,454.444z M40.7,204.144
+                    		c0-90.1,73.2-163.3,163.3-163.3s163.4,73.3,163.4,163.4s-73.3,163.4-163.4,163.4S40.7,294.244,40.7,204.144z"/>
+                    </g>
+                  </svg></button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <p class="alert alert-primary"><strong>Alert</strong> Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. Curabitur blandit tempus porttitor. <button class="icon icon-x alert-close" type="button">Close</button></p>
         </div>
 
         <div class="traffic">
@@ -241,7 +260,7 @@
           <h3>Message User</h3>
           <form class="" action="" method="post">
             <input class="form-field" type="text" name="userName" value="" placeholder="Search for User">
-            <textarea class="form-field" name="userMessage" placeholder="Message for User"></textarea>
+            <textarea class="message_user-message form-field" name="userMessage" placeholder="Message for User"></textarea>
             <button class="btn btn-primary" type="submit" name="button">Send</button>
           </form>
         </div>

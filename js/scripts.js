@@ -182,3 +182,16 @@ if (customSelect.length) {
     createCustomSelect(customSelect[i]);
   }
 }
+
+/* Alerts */
+const closeAlertBox = function(closeButton) {
+  closeButton.addEventListener('click', function() {
+    this.parentElement.style.display = 'none';
+  });
+}
+const alertClose = document.querySelectorAll('.alert-close');
+if (alertClose.length) {
+  for (let i = 0; i < alertClose.length; i++) {
+    closeAlertBox(alertClose[i]);
+  }
+}

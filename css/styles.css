@@ -367,6 +367,7 @@ html, body, .wrapper {
   box-sizing: border-box;
   text-align: center;
   text-transform: uppercase;
+  border: 1px solid transparent;
 }
 
 .btn-sm {
@@ -383,12 +384,27 @@ html, body, .wrapper {
   color: #ffffff;
 }
 
+.btn-outline {
+  border-color: #cccccc;
+}
+
 .canvas_wrap {
   position: relative;
   width: 100%;
   height: 200px;
 }
 
+.form-field {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 16px;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Switch Checkbox */
 /* Used examples from this site for structure and transitions for the checkboxes: https://1stwebdesigner.com/css-snippets-radio-toggles-switches/ */
 .check_toggle {
   position: relative;
@@ -464,6 +480,7 @@ html, body, .wrapper {
   transform: translate3d(48px, 0, 0);
 }
 
+/* Custom Select */
 .custom_select-wrap {
   position: relative;
 }
@@ -551,6 +568,58 @@ html, body, .wrapper {
   background-color: #eeeeee;
 }
 
+/* Alerts */
+
+.alert {
+  padding: 12px;
+  margin: 1rem 0 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.alert strong {
+  margin-right: 8px;
+}
+
+.alert-primary {
+  background-color: #8785c9;
+  color: #ffffff;
+}
+
+.alert-close {
+  margin-left: auto;
+}
+
+/* Bootstrap used as an example for this structure and styling */
+.input_group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+}
+
+.input_group-append {
+  margin-left: -1px;
+}
+
+.input_group > .form-field {
+  flex: 1 1 auto;
+  width: 1%;
+}
+
+.input_group > .form-field:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+}
+
+.input_group > .input_group-append > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 0;
+}
+
 /* Icons */
 .icon {
   position: relative;
@@ -609,6 +678,38 @@ html, body, .wrapper {
   border-left-color: #ffffff;
 }
 
+.icon-x {
+  display: inline-block;
+  border: none;
+  background: none;
+}
+
+.icon-x::before, .icon-x::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 4px;
+  margin-left: -8px;
+  margin-top: -2px;
+  background-color: #ffffff;
+  border-radius: 6px;
+}
+
+.icon-x::before {
+  transform: rotate(-45deg);
+}
+
+.icon-x::after {
+  transform: rotate(45deg);
+}
+
+.icon-search {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
 
 h1 {
   font-size: 1.5rem;
@@ -619,6 +720,7 @@ h1 {
   Framework
 **************/
 .wrapper {
+  padding-bottom: 60px;
   display: grid;
   grid-template-columns:1fr;
   grid-template-areas:
@@ -629,6 +731,7 @@ h1 {
 
 @media (min-width: 768px) {
   .wrapper {
+    padding: 0;
     grid-template-columns: 96px 1fr;
     grid-template-areas:
       "header header"
@@ -674,6 +777,26 @@ h1 {
 
 .header-notify {
   margin-top: 0;
+  cursor: pointer;
+}
+
+/* Bell shake used from codepen: https://codepen.io/rajucs/pen/EBKazB */
+.header-notify:hover .icon {
+  animation: bellshake .5s cubic-bezier(.36,.07,.19,.97) both;
+  backface-visibility: hidden;
+  transform-origin: top center;
+}
+
+@keyframes bellshake {
+  0% { transform: rotate(0); }
+  15% { transform: rotate(5deg); }
+  30% { transform: rotate(-5deg); }
+  45% { transform: rotate(4deg); }
+  60% { transform: rotate(-4deg); }
+  75% { transform: rotate(2deg); }
+  85% { transform: rotate(-2deg); }
+  92% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
 }
 
 .notify-active {
@@ -724,16 +847,14 @@ h1 {
 .nav {
   grid-area: nav;
   background-color: #5f5e91;
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .nav {
-    display: block;
-  }
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
 }
 
 .nav-list {
+  display: flex;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -741,19 +862,19 @@ h1 {
 }
 
 .nav-list li {
-  padding: 12px 0 12px 3px;
-  margin-top: 12px;
+  flex: 1 1;
+  padding: 12px 0;
   position: relative;
 }
 
 .nav-list > .is-active::before {
   content: '';
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  height: 100%;
-  border-right: 3px solid #52ff7a;
-  border-radius: 0 6px 6px 0;
+  width: 100%;
+  border-bottom: 3px solid #52ff7a;
+  border-radius: 6px 6px 0 0;
 }
 
 .nav-list-link {
@@ -768,6 +889,33 @@ h1 {
 
 .is-active .nav-list-link .icon, .nav-list-link:hover .icon, .nav-list-link:active .icon {
   opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    position: inherit;
+  }
+
+  .nav-list {
+    display: block;
+  }
+
+  .nav-list li {
+    padding: 12px 0 12px 3px;
+    margin-top: 12px;
+  }
+
+  .nav-list > .is-active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: 100%;
+    border-bottom: 0;
+    border-right: 3px solid #52ff7a;
+    border-radius: 0 6px 6px 0;
+  }
 }
 
 /* Main */
@@ -823,11 +971,53 @@ h1 {
 /* Main Head */
 .main-head {
   grid-area: mainHead;
+  padding-top: 0;
+}
+
+.main-head-inner {
+  display: flex;
+  border-bottom: 1px solid #cccccc;
+  margin-left: -12px;
+  margin-right: -12px;
+}
+
+.main-head-inner-title {
+  padding: 24px 12px;
+  margin: 0;
+  flex: 0 0;
+  margin-right: 24px;
+  margin-bottom: -1px;
+  background-color: #ffffff;
+  border-right: 1px solid #cccccc;
+}
+
+.main-head-inner-search {
+  margin-left: auto;
+  margin-right: 12px;
+  flex: 1 1 450px;
+  max-width: 450px;
+}
+
+@media (min-width: 1024px) {
+  .main-head-inner {
+    margin-left: -24px;
+    margin-right: -24px;
+  }
+
+  .main-head-inner-title {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .main-head-inner-search {
+    margin-right: 24px;
+  }
 }
 
 /* Traffic */
 .traffic {
   grid-area: traffic;
+  border-top-width: 0;
 }
 
 /* Daily Traffic */
@@ -965,14 +1155,8 @@ h1 {
   grid-area: messageUser;
 }
 
-.form-field {
-  display: block;
-  width: 100%;
-  padding: 12px 16px;
-  margin-top: 16px;
-  border: 1px solid #cccccc;
-  border-radius: 6px;
-  box-sizing: border-box;
+.message_user-message {
+  min-height: 92px;
 }
 
 /* Settings */
