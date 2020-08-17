@@ -1,10 +1,48 @@
+/* Header Notify Dropdown */
+const addDropFunc = function(dropdown) {
+  const dropButton = dropdown.querySelector('.dropdown-btn');
+  const dropList = dropdown.querySelector('.dropdown-list');
+
+  dropdown.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('is-active');
+  });
+
+  // Add event listener to document to hide select dropdown
+  // when clicked outside of select menu
+  document.addEventListener('click', function() {
+    if (dropdown.classList.contains('is-active')) {
+      dropdown.classList.remove('is-active');
+    }
+  });
+}
+
+const dropdowns = document.querySelectorAll('.dropdown');
+if (dropdowns.length) {
+  for (let i = 0; i < dropdowns.length; i++) {
+    addDropFunc(dropdowns[i]);
+  }
+}
+
+
+/* Create content charts */
+const changeData = function(chart, labels, data) {
+  console.log(labels);
+  chart.data.labels = labels;
+  chart.data.datasets.forEach((dataset) => {
+      dataset.data = data;
+  });
+
+  chart.update();
+}
+
 const trafficLine = document.getElementById('trafficLine');
 const trafficChart = new Chart(trafficLine, {
     type: 'line',
     data: {
         labels: ['16-22', '23-29', '30-5', '6-12', '13-19', '20-26', '27-3', '4-10', '11-17', '18-24', '25-31'],
         datasets: [{
-            data: [0, 750, 1250, 1000, 1500, 2000, 1500, 1750, 1250, 1750, 2250, 1750, 2250],
+            data: [0, 750, 1250, 1000, 1500, 2000, 1500, 1750, 1250, 1750, 2250],
             backgroundColor: [
                 'rgba(149, 148, 227, 0.2)',
             ],
@@ -32,6 +70,41 @@ const trafficChart = new Chart(trafficLine, {
             }]
         }
     }
+});
+
+const dataNav = document.querySelector('.traffic-heading-data');
+
+dataNav.addEventListener('click', function(e) {
+  if (e.target.tagName === 'BUTTON' && !e.target.classList.contains('is-active')) {
+    const btn = e.target;
+    const trafficData = {
+      labels: [],
+      data: []
+    };
+    this.querySelector('button.is-active').classList.remove('is-active');
+    btn.classList.add('is-active');
+
+    // Check which button is clicked
+    if (btn.id === 'hourlyData') {
+      // If hourly is clicked, supply hourly data
+      trafficData.labels = ['6:00AM', '7:00AM', '8:00AM', '9:00AM', '10:00AM', '11:00AM', '12:00PM', '1:00PM', '2:00PM', '3:00PM', '4:00PM'];
+      trafficData.data = [0, 500, 750, 850, 1000, 650, 675, 800, 700, 650, 500];
+    } else if (btn.id === 'dailyData') {
+      // If daily is clicked, supply daily data
+      trafficData.labels = ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19'];
+      trafficData.data = [0, 1000, 1100, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400];
+    } else if (btn.id === 'weeklyData') {
+      // If weekly is clicked, supply weekly data
+      trafficData.labels = ['16-22', '23-29', '30-5', '6-12', '13-19', '20-26', '27-3', '4-10', '11-17', '18-24', '25-31'];
+      trafficData.data = [0, 750, 1250, 1000, 1500, 2000, 1500, 1750, 1250, 1750, 2250];
+    } else if (btn.id === 'monthlyData') {
+      // If monthly is clicked, supply monthly data
+      trafficData.labels = ['June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
+      trafficData.data = [0, 1250, 1500, 2000, 1750, 1750, 2250, 2500, 3000, 2750, 3250];
+    }
+
+    changeData(trafficChart, trafficData.labels, trafficData.data);
+  }
 });
 
 const dailyTraffic = document.getElementById('dailyTraffic');
@@ -195,3 +268,42 @@ if (alertClose.length) {
     closeAlertBox(alertClose[i]);
   }
 }
+
+/* Message User */
+const messageForm = document.getElementById('messageForm');
+
+messageForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const alertWrap = this.querySelector('.message_user-alert');
+  const userInput = this.querySelector('.message_user-user');
+  const messageInput = this.querySelector('.message_user-message');
+  // Create alert elements
+  const alertBox = document.createElement('p');
+  const alertClose = document.createElement('button');
+  alertBox.className = 'alert';
+  alertClose.className = 'icon icon-x alert-close';
+  alertClose.type = 'button';
+
+  const userTest = userInput.value.replace(/^\s+/, '').replace(/\s+$/, '');
+  const messageTest = messageInput.value.replace(/^\s+/, '').replace(/\s+$/, '');
+
+  if (userTest === '') {
+    // Display alert with error about empty user field
+    alertBox.textContent = 'Please enter user to send message to.'
+    alertBox.classList.add('alert-error');
+  } else if (messageTest === '') {
+    // Display alert with error about empty messagefield
+    alertBox.textContent = 'Please enter message to send to the user.'
+    alertBox.classList.add('alert-error');
+  } else {
+    // Display alert with notification that message has sent
+    alertBox.textContent = 'Message sent successfully'
+    alertBox.classList.add('alert-primary');
+  }
+
+  alertWrap.innerHTML = '';
+  alertBox.appendChild(alertClose);
+  alertWrap.appendChild(alertBox);
+
+  closeAlertBox(alertClose);
+});

@@ -368,10 +368,22 @@ html, body, .wrapper {
   text-align: center;
   text-transform: uppercase;
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .btn-sm {
   padding: 4px;
+}
+
+.btn-nav {
+  text-transform: none;
+  padding: 4px 8px;
+  border-radius: 14px;
+}
+
+.btn-nav.is-active, .btn-nav:hover, .btn-nav:active {
+  background-color: #77a883;
+  color: #ffffff;
 }
 
 .btn-primary {
@@ -587,6 +599,11 @@ html, body, .wrapper {
   color: #ffffff;
 }
 
+.alert-error {
+  background-color: #870c03;
+  color: #ffffff;
+}
+
 .alert-close {
   margin-left: auto;
 }
@@ -618,6 +635,48 @@ html, body, .wrapper {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-width: 0;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  border: 1px solid #cccccc;
+  border-top: 0;
+  border-radius: 0 0 6px 6px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 10px -10px;
+  display: none;
+}
+
+.is-active .dropdown-list {
+  display: block;
+}
+
+.dropdown-list.in-header {
+  top: calc(100% + 13px);
+  color: #000000;
+}
+
+.dropdown-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-list li {
+  padding: 12px;
+  border-bottom: 1px solid #cccccc;
+}
+
+.dropdown-list li:last-child {
+  border-bottom: 0;
 }
 
 /* Icons */
@@ -756,7 +815,7 @@ h1 {
   }
 }
 
-.header ul {
+.header > ul {
   display: flex;
   align-items: center;
   list-style: none;
@@ -764,13 +823,13 @@ h1 {
   margin: 0 0 0 auto;
 }
 
-.header li {
+.header > ul > li {
   align-self: center;
   padding: 8px 12px;
   border-right: 1px solid #5f5e91;
 }
 
-.header li:last-child {
+.header > ul > li:last-child {
   padding-right: 0;
   border-right: 0;
 }
@@ -1018,6 +1077,25 @@ h1 {
 .traffic {
   grid-area: traffic;
   border-top-width: 0;
+}
+
+.traffic-heading {
+  display: flex;
+}
+
+.traffic-heading-data {
+  padding: 0;
+  margin-left: auto;
+  display: flex;
+  list-style: none;
+}
+
+.traffic-heading-data li {
+  margin-right: 12px;
+}
+
+.traffic-heading-data li:last-child {
+  margin-right: 0;
 }
 
 /* Daily Traffic */
