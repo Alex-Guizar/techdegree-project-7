@@ -284,7 +284,7 @@
 
         <div class="settings">
           <h3>Settings</h3>
-          <form class="" action="" method="post">
+          <form id="settingsForm" class="" action="" method="post">
 
             <!-- Used examples from this site for structure and transitions for the checkboxes: https://1stwebdesigner.com/css-snippets-radio-toggles-switches/ -->
 
@@ -304,7 +304,7 @@
               </label>
             </div>
 
-            <select class="custom_select">
+            <select id="timezone" class="custom_select">
               <option value="hide">Select Timezone</option>
               <option value="1">(GMT-12:00) International Date Line West</option>
               <option value="2">(GMT-11:00) Midway Island, Samoa</option>
@@ -392,7 +392,7 @@
 
             <div class="settings-btns">
               <div><button class="btn btn-primary" type="submit" name="button">Save</button></div>
-              <div><button class="btn btn-cancel" type="button" name="button">Cancel</button></div>
+              <div><button id="resetSettings" class="btn btn-cancel" type="button" name="button">Cancel</button></div>
             </div>
           </form>
         </div>

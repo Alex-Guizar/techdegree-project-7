@@ -27,7 +27,6 @@ if (dropdowns.length) {
 
 /* Create content charts */
 const changeData = function(chart, labels, data) {
-  console.log(labels);
   chart.data.labels = labels;
   chart.data.datasets.forEach((dataset) => {
       dataset.data = data;
@@ -225,6 +224,11 @@ const createCustomSelect = function(selectEle) {
     }
   });
 
+  // Check to see if select has changed and adjust visible text
+  selectEle.addEventListener('change', function() {
+    selectedItem.textContent = listItems[this.selectedIndex].textContent;
+  });
+
   // Add event listener to items in list to change
   // select's value based on selection. Hide dropdown
   for (let i = 0; i < listItems.length; i++) {
@@ -235,7 +239,6 @@ const createCustomSelect = function(selectEle) {
       selectedItem.classList.remove('active');
       selectEle.value = selectedValue;
       selectList.style.display = 'none';
-      //console.log(selectEle.value);
     });
   }
 
@@ -307,3 +310,74 @@ messageForm.addEventListener('submit', function(e) {
 
   closeAlertBox(alertClose);
 });
+
+/* Load, save, reset profile settings */
+const profileSettings = function() {
+  const emailNotify = document.getElementById('email_notify');
+  const publicProf = document.getElementById('public_prof');
+  const timezone = document.getElementById('timezone');
+  const settingsForm = document.getElementById('settingsForm');
+  const resetButton = document.getElementById('resetSettings');
+
+  // Check for saved settings
+  const checkSettings = () => {
+    const settings = localStorage.getItem('YourAppSettings');
+
+    if (settings !== null) {
+      const parsedSettings = JSON.parse(settings);
+      const timezoneOptions = timezone.options;
+
+      emailNotify.checked = parsedSettings.emailNotify;
+      publicProf.checked = parsedSettings.publicProf;
+
+      for (let i = 0; i < timezoneOptions.length; i++) {
+        if (timezoneOptions[i].value === parsedSettings.timezone) {
+          timezone.selectedIndex = i;
+          break;
+        }
+      }
+      // Get change event to fire for select
+      // Assistance found here: https://stackoverflow.com/questions/2856513/how-can-i-trigger-an-onchange-event-manually
+      if ('createEvent' in document) {
+        var evt = document.createEvent('HTMLEvents');
+        evt.initEvent('change', false, true);
+        timezone.dispatchEvent(evt);
+      } else
+        timezone.fireEvent('onchange');
+    }
+  }
+
+  const saveSettings = (e) => {
+    e.preventDefault();
+    const settings = {};
+    settings.emailNotify = emailNotify.checked;
+    settings.publicProf = publicProf.checked;
+    settings.timezone = timezone.value;
+
+    localStorage.setItem('YourAppSettings', JSON.stringify(settings));
+  }
+
+  const resetSettings = () => {
+    emailNotify.checked = false;
+    publicProf.checked = false;
+    timezone.value = 'hide';
+
+    localStorage.removeItem('YourAppSettings');
+  }
+
+
+  checkSettings();
+
+  settingsForm.addEventListener('submit', saveSettings);
+  resetButton.addEventListener('click', resetSettings);
+}
+
+const saveSettings = () => {
+  const emailNotify = document.getElementById('email_notify');
+  const publicProf = document.getElementById('public_prof');
+  const timezone = document.getElementById('timezone');
+
+
+}
+
+profileSettings();
