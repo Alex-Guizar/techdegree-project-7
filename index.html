@@ -276,8 +276,10 @@
           <h3>Message User</h3>
           <form id="messageForm" action="" method="post">
             <div class="message_user-alert"></div>
-            <input class="form-field message_user-user" type="text" name="userName" value="" placeholder="Search for User">
-            <textarea class="message_user-message form-field" name="userMessage" placeholder="Message for User"></textarea>
+            <div style="position: relative;">
+              <input id="userName" class="form-field message_user-user" type="text" name="userName" value="" placeholder="Search for User">
+            </div>
+            <textarea id="userMessage" class="message_user-message form-field" name="userMessage" placeholder="Message for User"></textarea>
             <button class="btn btn-primary" type="submit" name="button">Send</button>
           </form>
         </div>

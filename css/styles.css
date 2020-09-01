@@ -1233,8 +1233,37 @@ h1 {
   grid-area: messageUser;
 }
 
+.message_user-user.has-list {
+  border-radius: 0 0 6px 6px;
+}
+
 .message_user-message {
   min-height: 92px;
+}
+
+.search_list {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  max-height: 500px;
+  padding: 0;
+  margin: 0 0 -1px;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 6px 6px 0 0;
+  overflow-y: auto;
+  cursor: pointer;
+}
+
+.search_list li {
+  padding: 12px;
+}
+
+.search_list li:hover {
+  background-color: #eeeeee;
 }
 
 /* Settings */

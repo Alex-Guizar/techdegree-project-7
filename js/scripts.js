@@ -311,6 +311,83 @@ messageForm.addEventListener('submit', function(e) {
   closeAlertBox(alertClose);
 });
 
+/* User Autocomplete */
+const userName = document.getElementById('userName');
+let userData = null;
+
+/* Pass array of user info */
+const buildUserList = (arr) => {
+  const userList = document.createElement('ul');
+  userList.className = 'search_list'
+  for (let i = 0; i < arr.length; i++) {
+    const userItem = document.createElement('li');
+    userItem.textContent = arr[i].name;
+
+    userItem.addEventListener('click', function() {
+      userName.value = this.textContent;
+      userName.classList.remove('has-list');
+      userList.remove();
+    });
+
+    userList.appendChild(userItem);
+  }
+
+  return userList;
+}
+
+const filterUser = function() {
+  if (userData === null) {
+    userData = {
+      "users": [
+        { "name": "Victoria Chambers" },
+        { "name": "Dale Byrd" },
+        { "name": "Dawn Wood" },
+        { "name": "Dan Oliver" }
+      ]
+    };
+  }
+
+  const foundUsers = [];
+  const searchVal = this.value.toLowerCase();
+  const searchList = messageForm.querySelector('.search_list');
+
+  if (searchVal !== '') {
+    for (let i = 0; i < userData.users.length; i++) {
+      if (userData.users[i].name.toLowerCase().startsWith(searchVal)) {
+        foundUsers.push(userData.users[i]);
+      }
+    }
+
+    if (foundUsers.length) {
+      const builtList = buildUserList(foundUsers);
+      if (searchList === null) {
+        this.parentElement.insertBefore(builtList, this);
+        this.classList.add('has-list');
+      } else {
+        this.parentElement.replaceChild(builtList, searchList);
+      }
+    }
+  } else {
+    if (searchList !== null) {
+      userName.classList.remove('has-list');
+      searchList.remove();
+    }
+  }
+}
+
+userName.addEventListener('keyup', filterUser);
+userName.addEventListener('focus', filterUser);
+
+// Add event listener to document to hide filtered users
+// when clicked outside of input or list
+document.addEventListener('click', function(e) {
+  // Only run if target isn't user input and user list isn't shown
+  if (e.target.id !== 'userName' && userName.classList.contains('has-list')) {
+    userName.classList.remove('has-list');
+    userName.previousElementSibling.remove();
+  }
+});
+
 /* Load, save, reset profile settings */
 const profileSettings = function() {
   const emailNotify = document.getElementById('email_notify');
@@ -370,14 +447,6 @@ const profileSettings = function() {
 
   settingsForm.addEventListener('submit', saveSettings);
   resetButton.addEventListener('click', resetSettings);
-}
-
-const saveSettings = () => {
-  const emailNotify = document.getElementById('email_notify');
-  const publicProf = document.getElementById('public_prof');
-  const timezone = document.getElementById('timezone');
-
-
 }
 
 profileSettings();
