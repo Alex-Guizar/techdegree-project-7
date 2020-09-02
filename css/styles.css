@@ -980,6 +980,7 @@ h1 {
 
 /* Main */
 .main {
+  width: 100%;
   grid-area: main;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1010,9 +1011,11 @@ h1 {
 }
 
 .main > * {
+  width: 100%;
   padding: 24px 12px;
   border-top: 1px solid #cccccc;
   border-left: 1px solid #cccccc;
+  box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
